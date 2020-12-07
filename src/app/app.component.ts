@@ -22,15 +22,10 @@ export class AppComponent {
     this.themeService.getTheme().subscribe(lightmode => {
 
       if (lightmode) {
-
         this.renderer.removeClass(document.body, 'bootstrap-dark');
-
       }
-
       else
-
         this.renderer.addClass(document.body, 'bootstrap-dark');
-
     })
   }
 
