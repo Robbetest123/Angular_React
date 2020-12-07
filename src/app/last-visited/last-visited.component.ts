@@ -7,14 +7,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Component({
-  selector: 'app-weather',
-  templateUrl: './weather.component.html',
-  styleUrls: ['./weather.component.css']
+  selector: 'app-last-visited',
+  templateUrl: './last-visited.component.html',
+  styleUrls: ['./last-visited.component.css']
 })
-@Injectable({
-  providedIn: 'root'
-})
-export class WeatherComponent implements OnInit {
+export class LastVisitedComponent implements OnInit {
   lightmode: boolean = false;
   public weatherData: any;
   constructor(
@@ -22,24 +19,24 @@ export class WeatherComponent implements OnInit {
     private router: Router,
     private apixuService: ApixuService,
     private readonly ngf: NgForage,
-    private renderer: Renderer2) {
-  }
+    private renderer: Renderer2) { }
 
-  public getItem<T = any>(key: string): Promise<T> {
-    return this.ngf.getItem<T>(key);
-  }
+    public getItem<T = any>(key: string): Promise<T> {
+      return this.ngf.getItem<T>(key);
+    }
 
   ngOnInit(): void {
 
-    this.route.paramMap.subscribe((params: ParamMap) => {
-    this.ngf.setItem<string>('stad', params.get('stad') || '');
+    this.getItem<string>('stad').then(value =>     
+      this.route.paramMap.subscribe((params: ParamMap) => {
       this.apixuService
-        .getWeather(params.get('stad')).subscribe(data => {
+        .getWeather(value).subscribe(data => {
           this.weatherData = data;
           console.log(this.weatherData);
         }
         );
-    })
+    }));
+
   }
   themeSelection: BehaviorSubject<string> = new BehaviorSubject<string>('bootstrap');
 

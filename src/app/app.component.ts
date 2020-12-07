@@ -10,12 +10,12 @@ import { ThemeService } from './services/theme.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'weather-app';
-
+  lightmode: boolean = false;
   constructor(private readonly ngf: NgForage,
     private themeService: ThemeService,
     private renderer: Renderer2
   ) {
+    this.themeService.getTheme().subscribe(theme => this.lightmode = theme)
   }
 
   public async ngOnInit() {
@@ -35,5 +35,9 @@ export class AppComponent {
   }
 
 
+
+  toggleTheme() {
+    this.themeService.toggleTheme()
+  }
 
 }

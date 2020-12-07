@@ -1,5 +1,5 @@
 <div>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">  
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!-- Links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -9,9 +9,15 @@
         <a class="nav-link" [routerLink]="['/weather-component/oostende']" routerLinkActive="active">Oostende</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/weather-component/gent']" routerLinkActive="active">Gent</a>
+        <a class="nav-link" [routerLink]="['/weather-component/wervik']" routerLinkActive="active">Wervik</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/last']" routerLinkActive="active">Last Visited</a>
       </li>
     </ul>
+    <div class="oval" [ngClass]="{ovalSelected: lightmode}" (click)="toggleTheme()">
+      <div class="button" [ngClass]="{buttonSelected: lightmode}"></div>
+    </div>
   </nav>
   <router-outlet></router-outlet>
 </div>
